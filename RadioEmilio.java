@@ -9,8 +9,6 @@ public class RadioEmilio implements IRadio{
     private int canalActualAM = 530; 
     private double canalActualFM = 87.9; 
 
-
-
     @Override
     public void on() {
         estaEncendido = true;
