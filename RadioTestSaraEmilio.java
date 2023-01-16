@@ -6,12 +6,12 @@ import static org.junit.Assert.assertTrue;
 import  org.junit.Test;
  
 
-public class RadioEmilioTest {
+public class RadioTestSaraEmilio {
     @Test
     public void seEsperaQueEsteEncendidoElRadio() {
         //arrange
         final boolean esperoUnValorVerdadero = true; 
-        IRadio miRadio = new RadioEmilio(); 
+        IRadio miRadio = new RadioSARAEMILIO(); 
         //action
         miRadio.on();
         //assert
@@ -22,7 +22,7 @@ public class RadioEmilioTest {
     public void seEsperaQueEsteApagadoElRadio() {
         //arrange
         final boolean esperoUnValorFalso = false; 
-        IRadio miRadio = new RadioEmilio(); 
+        IRadio miRadio = new RadioSARAEMILIO(); 
         //action
         miRadio.off();
         //assert
@@ -32,7 +32,7 @@ public class RadioEmilioTest {
     @Test
     public void seEsperaQueAvanceElDialSegunLaEstacionAM() {
         //arrange
-        IRadio miRadio = new RadioEmilio(); 
+        IRadio miRadio = new RadioSARAEMILIO(); 
         miRadio.on();
         try {
             miRadio.setFrequence("AM");

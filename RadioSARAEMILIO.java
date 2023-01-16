@@ -1,6 +1,6 @@
 import java.security.cert.TrustAnchor;
 
-public class RadioEmilio implements IRadio{
+public class RadioSARAEMILIO implements IRadio{
 
     private boolean estaEncendido;
     private String frecuencia = "AM"; 

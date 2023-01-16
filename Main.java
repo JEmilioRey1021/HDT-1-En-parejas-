@@ -4,7 +4,7 @@ import java.util.Scanner;
 public class Main {
     public static void main(String args[]){ 
 
-        IRadio miRadio = new RadioEmilio();
+        IRadio miRadio = new RadioSARAEMILIO();
         Scanner scan = new Scanner(System.in); 
         boolean continuar = true; 
         while (continuar){
