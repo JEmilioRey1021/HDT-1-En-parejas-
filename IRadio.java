@@ -12,7 +12,7 @@ public interface IRadio {
 	 * @return true si la radio esta encendida y false cuando la radio este apagada
 	 */
 	public boolean isOn();
-	
+
 	/***
 	 * Este metodo nos ayuda a establecer la frecuencia, recibe un parametro llamado freq que puede "AM" o "FM"
 	 * @param freq La frecuencia la cual puede ser AM o FM, de lo contrario error.

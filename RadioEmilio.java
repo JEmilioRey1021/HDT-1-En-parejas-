@@ -3,7 +3,7 @@ import java.security.cert.TrustAnchor;
 public class RadioEmilio implements IRadio{
 
     private boolean estaEncendido;
-    private String frecuencia; 
+    private String frecuencia = "AM"; 
     private double[] memoriasFM = new double [12]; 
     private int[] memoriasAM = new int [12]; 
     private int canalActualAM = 530; 
@@ -26,97 +26,139 @@ public class RadioEmilio implements IRadio{
 
     @Override
     public void setFrequence(String freq) throws Exception {
-        if(freq=="FM" || freq=="AM"){
-            frecuencia = freq; 
+        if(estaEncendido){
+            if(freq=="FM" || freq=="AM"){
+                frecuencia = freq; 
+            }
+            else{
+                throw new Exception("Frecuencia invalida"); 
+            }
         }
         else{
-            throw new Exception("Frecuencia invalida"); 
+            throw new Exception("El radio esta apagado."); 
+
         }
     }
 
     @Override
     public String getFrequence() {
-        return frecuencia;
+            return frecuencia;
     }
 
     @Override
     public void Forward() {
-        if(frecuencia == "AM"){
-            if(canalActualAM == 1610){
-                canalActualAM = 530; 
+        if(estaEncendido){
+            if(frecuencia == "AM"){
+                if(canalActualAM == 1610){
+                    canalActualAM = 530; 
+                }
+                else{
+                    canalActualAM += 10; 
+                }
+                
             }
             else{
-                canalActualAM += 10; 
+                if(canalActualFM== 107.9){
+                    canalActualFM= 87.9; 
+                }
+                else{
+                    canalActualFM += 0.2; 
+                }
             }
-            
         }
         else{
-            if(canalActualFM== 107.9){
-                canalActualFM= 87.9; 
-            }
-            else{
-                canalActualFM += 0.2; 
-            }
+            System.out.println("El radio esta apagado"); 
+
         }
     }
 
     @Override
     public void Backward() {
-        if(frecuencia == "AM"){
-            if(canalActualAM == 530){
-                canalActualAM = 1610; 
+        if(estaEncendido){
+            if(frecuencia == "AM"){
+                if(canalActualAM == 530){
+                    canalActualAM = 1610; 
+                }
+                else{
+                    canalActualAM -= 10; 
+                }
+                
             }
             else{
-                canalActualAM -= 10; 
+                if(canalActualFM== 87.9){
+                    canalActualFM= 107.9; 
+                }
+                else{
+                    canalActualFM -= 0.2; 
+                }
             }
-            
         }
         else{
-            if(canalActualFM== 87.9){
-                canalActualFM= 107.9; 
-            }
-            else{
-                canalActualFM -= 0.2; 
-            }
+            System.out.println("El radio esta apagado"); 
+
         }
     }
 
     @Override
     public double getFMActualStation() {
-        return canalActualFM;
+            return canalActualFM;
     }
 
     @Override
     public int getAMActualStation() {
-        return canalActualAM;
+            return canalActualAM;
     }
 
     @Override
     public void setFMActualStation(double actualStation) {
-        if(actualStation >= 87.9 && actualStation <= 107.9){
-            canalActualFM = actualStation; 
+        if(estaEncendido){
+            if(actualStation >= 87.9 && actualStation <= 107.9){
+                canalActualFM = actualStation; 
+            }
         }
-    }
+        else{
+            System.out.println("El radio esta apagado"); 
 
-    @Override
-    public void setAMActualStation(int actualStation) {
-        if(actualStation >= 530 && actualStation <= 1610){
-            canalActualAM = actualStation;  
-        }
-    }
-
-    @Override
-    public void saveFMStation(double actualStation, int slot) {
-        if(slot >0 && slot < 13){
-            memoriasFM[slot - 1] = actualStation; 
         }
         
     }
 
     @Override
-    public void saveAMStation(int actualStation, int slot) {
-        if(slot >0 && slot < 13){
-            memoriasAM[slot - 1] = actualStation; 
+    public void setAMActualStation(int actualStation) {
+        if(estaEncendido){
+            if(actualStation >= 530 && actualStation <= 1610){
+                canalActualAM = actualStation;  
+            }
+        }
+        else{
+            System.out.println("El radio esta apagado"); 
+
+        }
+    }
+
+    @Override
+    public void saveFMStation(double actualStation, int slot) {
+        if(estaEncendido){
+            if(slot >0 && slot < 13){
+                memoriasFM[slot - 1] = actualStation; 
+            }
+        }
+        else{
+            System.out.println("El radio esta apagado"); 
+
+        }
+    }
+
+    @Override
+    public void saveAMStation(int actualStation, int slot){
+        if(estaEncendido){
+            if(slot >0 && slot < 13){
+                memoriasAM[slot - 1] = actualStation; 
+            }
+        }
+        else{
+            System.out.println("El radio esta apagado"); 
+
         }
     }
 
